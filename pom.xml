@@ -6,12 +6,13 @@
     <version>25</version>
   </parent>
   <artifactId>jetty-project</artifactId>
-  <version>9.3.7.v20160115</version>
+  <version>jetty-9.3.7.v20160115-SNAPSHOT</version>
   <name>Jetty :: Project</name>
   <url>http://www.eclipse.org/jetty</url>
   <packaging>pom</packaging>
   <properties>
     <jetty.url>http://www.eclipse.org/jetty</jetty.url>
+    <skipTests>true</skipTests>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <build-support-version>1.4</build-support-version>
     <slf4j-version>1.6.6</slf4j-version>
@@ -22,11 +23,22 @@
     <alpn.version>undefined</alpn.version>
   </properties>
   <scm>
-    <connection>scm:git:http://git.eclipse.org/gitroot/jetty/org.eclipse.jetty.project.git</connection>
-    <developerConnection>scm:git:ssh://git.eclipse.org/gitroot/jetty/org.eclipse.jetty.project.git</developerConnection>
-    <url>http://git.eclipse.org/c/jetty/org.eclipse.jetty.project.git/tree</url>
-    <tag>HEAD</tag>
+    <connection>scm:git:https://git.soma.salesforce.com/Jetty/Jetty9.3.git</connection>
+    <developerConnection>scm:git:https://git.soma.salesforce.com/Jetty/Jetty9.3.git</developerConnection>
+    <url>https://git.soma.salesforce.com/Jetty/Jetty9.3/tree/jetty-9.3.x</url>
+    <tag>jetty-project-9.4.0.sfdc5</tag>
   </scm>
+<distributionManagement>
+    <repository>
+      <id>nexus</id>
+      <url>https://nexus.soma.salesforce.com/nexus/content/repositories/releases/</url>
+    </repository>
+    <snapshotRepository>
+      <id>nexus</id>
+      <url>https://nexus.soma.salesforce.com/nexus/content/repositories/snapshots/</url>
+    </snapshotRepository>
+  </distributionManagement>
+
   <build>
     <defaultGoal>install</defaultGoal>
     <plugins>
@@ -39,6 +51,13 @@
           <testSource>1.8</testSource>
           <testTarget>1.8</testTarget>
           <verbose>false</verbose>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-gpg-plugin</artifactId>
+        <configuration>
+            <skip>true</skip>
         </configuration>
       </plugin>
       <plugin>
